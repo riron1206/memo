@@ -2621,6 +2621,26 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
             ]
           },
           {
+            'name': 'print文色付け',
+            'snippet': [
+              "### Make prettier the prints ###",
+              "from colorama import Fore",
+              "c_ = Fore.CYAN",
+              "m_ = Fore.MAGENTA",
+              "r_ = Fore.RED",
+              "b_ = Fore.BLUE",
+              "y_ = Fore.YELLOW",
+              "g_ = Fore.GREEN",
+              "",
+              "print(c_,\"FOLDS: \")",
+              "print(m_, '*' * 60)",
+              "print(r_, '*' * 60)",
+              "print(b_, '*' * 60)",
+              "print(y_, '*' * 60)",
+              "print(g_, '*' * 60)",
+            ]
+          },
+          {
             'name': '1セルの実行結果を複数表示するための便利設定',
             'snippet': [
               "from IPython.core.interactiveshell import InteractiveShell",
