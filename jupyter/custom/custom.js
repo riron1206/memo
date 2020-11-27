@@ -4364,6 +4364,14 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
         'name': 'tf.keras',
         'sub-menu': [
           {
+            'name': 'GPUメモリ必要な分だけ確保',
+            'snippet': [
+              "import os",
+              "os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"",
+              "os.environ[\"TF_FORCE_GPU_ALLOW_GROWTH\"] = \"true\"",
+            ],
+          },
+          {
             'name': 'GPU使わない',
             'snippet': [
               "import os",
