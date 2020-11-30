@@ -4407,6 +4407,16 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
             ],
           },
           {
+            'name': 'モデルファイルロード',
+            'snippet': [
+              "import tensorflow as tf",
+              "# モデルロード",
+              "model = tf.keras.models.load_model(\"model.h5\", compile=False)",
+              "# 重みのみロード",
+              "model.load_weights(\"weights.h5\", by_name=True, skip_mismatch=True)",
+            ],
+          },
+          {
             'name': 'テーブルデータの二値分類model',
             'snippet': [
               "import os",
