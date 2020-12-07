@@ -179,6 +179,16 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
         ],
       },
       {
+        'name': 'pickle',
+        'snippet': [
+          "import pickle",
+          "",
+          "m_path = f\"model.pkl\"",
+          "pickle.dump(model, open(m_path, 'wb'))",
+          "model = pickle.load(open(m_path, 'rb'))",
+        ]
+      },
+      {
         'name': 'logging',
         'snippet': [
           "import datetime",
@@ -4712,6 +4722,34 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
         ]
       },
       {
+        'name': 'pytorch',
+        'sub-menu': [
+          {
+            'name': '乱数固定',
+            'snippet': [
+              "import os",
+              "import random ",
+              "import torch",
+              "import numpy as np",
+              "",
+              "def seed_everything(seed_value):",
+              "    random.seed(seed_value)",
+              "    np.random.seed(seed_value)",
+              "    torch.manual_seed(seed_value)",
+              "    os.environ['PYTHONHASHSEED'] = str(seed_value)",
+              "    ",
+              "    if torch.cuda.is_available(): ",
+              "        torch.cuda.manual_seed(seed_value)",
+              "        torch.cuda.manual_seed_all(seed_value)",
+              "        torch.backends.cudnn.deterministic = True",
+              "        torch.backends.cudnn.benchmark = False",
+              "        ",
+              "seed_everything(42)",
+            ]
+          },
+        ]
+      },
+      {
         'name': 'xfeat',
         'sub-menu': [
           {
@@ -4842,6 +4880,23 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
               "                 agg_methods=[\"sum\", \"min\", \"max\", \"mean\", \"median\", np.ptp]",
               "                 )[0]",
               "df",
+            ]
+          },
+        ]
+      },
+      {
+        'name': 'tabnet',
+        'sub-menu': [
+          {
+            'name': 'pytorch版参考',
+            'snippet': [
+              "https://www.kaggle.com/anonamename/selfsupervisedtabnet-titanic-comparing-lgbm-nn",
+            ]
+          },
+          {
+            'name': 'tensorflow版参考',
+            'snippet': [
+              "https://www.kaggle.com/gogo827jz/moa-stacked-tabnet-baseline-tensorflow-2-0",
             ]
           },
         ]
