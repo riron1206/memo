@@ -4815,6 +4815,55 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
               "seed_everything(42)",
             ]
           },
+          {
+            'name': '重みファイルロード',
+            'snippet': [
+              "import torchvision ",
+              "",
+              "arch = \"resnet34\"",
+              "",
+              "# webからimagenetの重みダウンロードしてロードする場合",
+              "net = torchvision.models.__dict__[arch](pretrained=True)",
+              "",
+              "# ファイルからロードする場合",
+              "net = torchvision.models.__dict__[arch](pretrained=None)",
+              "pretrained_path = f'./{arch}.pth'",
+              "net.load_state_dict(torch.load(pretrained_path))",
+            ]
+          },
+          {
+            'name': '特定の層を入れ替える（fine-tuningで使う）',
+            'snippet': [
+              "# fcという名前の層を全結合層に差し替える",
+              "n_classes = 5",
+              "net.fc = nn.Linear(2048, n_classes)",
+            ]
+          },
+          {
+            'name': '任意の層より前の重みを固定(requires_grad=False)',
+            'snippet': [
+              "import torchvision ",
+              "",
+              "vgg = torchvision.models.vgg16(pretrained=True)",
+              "",
+              "# 24層目より前の重み固定",
+              "# モデルの重みは、.parameters()で取得できる",
+              "for i, param in enumerate(vgg.parameters()):",
+              "    if i <= 24:",
+              "        param.requires_grad=False",
+            ]
+          },
+          {
+            'name': 'はじめのn層だけを取り出す',
+            'snippet': [
+              "# 層の情報は、.children()で取得できる",
+              "import torchvision ",
+              "vgg = torchvision.models.vgg16(pretrained=True)",
+              "layers = list(vgg.children())",
+              "new_net = layers[0][:5]  # 5層までを取り出し",
+              "new_net = vgg.features[:5]  # features[:n]でもいけるみたい",
+            ]
+          },
         ]
       },
       {
