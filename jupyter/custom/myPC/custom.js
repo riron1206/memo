@@ -4489,6 +4489,45 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
             ],
           },
           {
+            'name': 'データフレームから画像とラベルをtf.data形式に変換',
+            'snippet': [
+              "import tensorflow as tf",
+              "",
+              "BATCH_SIZE=5",
+              "",
+              "@tf.function",
+              "def load_image_and_label_from_path(image_path, label):",
+              "    img = tf.io.read_file(image_path)  # 画像パスロード",
+              "    img = tf.image.decode_jpeg(img, channels=3)  # jpegファイルロード",
+              "    img = tf.cast(img, tf.float32) / 255.0  # 正規化",
+              "    img = tf.image.resize(img, (224, 224)) # Resizing",
+              "    return img, tf.cast(label, tf.int32)  # ラベルもtf型に変換",
+              "",
+              "# Seriesからtf.data.Datasetに変換",
+              "training_data = tf.data.Dataset.from_tensor_slices((train_df.filepath.values, train_df.label.values))",
+              "validation_data = tf.data.Dataset.from_tensor_slices((validation_df.filepath.values, validation_df.label.values))",
+              "",
+              "AUTO = tf.data.experimental.AUTOTUNE",
+              "",
+              "training_ds = (",
+              "    training_data",
+              "    .map(load_image_and_label_from_path, num_parallel_calls=AUTO)",
+              "    .repeat()",
+              "    .shuffle(buffer_size=256)",
+              "    .batch(BATCH_SIZE)",
+              "    .prefetch(buffer_size=AUTO)",
+              ")",
+              "",
+              "testing_ds = (",
+              "    validation_data",
+              "    .map(load_image_and_label_from_path, num_parallel_calls=AUTO)",
+              "    .batch(BATCH_SIZE)",
+              "    .prefetch(buffer_size=AUTO)",
+              ")",
+            ],
+          },
+
+          {
             'name': 'テーブルデータの二値分類model',
             'snippet': [
               "import os",
@@ -4837,6 +4876,7 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
               "# fcという名前の層を全結合層に差し替える",
               "n_classes = 5",
               "net.fc = nn.Linear(2048, n_classes)",
+              "net[0] = nn.Linear(2048, n_classes)  # 層の番号でもいける",
             ]
           },
           {
@@ -4856,12 +4896,13 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
           {
             'name': 'はじめのn層だけを取り出す',
             'snippet': [
-              "# 層の情報は、.children()で取得できる",
               "import torchvision ",
+              "from torch import nn",
               "vgg = torchvision.models.vgg16(pretrained=True)",
-              "layers = list(vgg.children())",
-              "new_net = layers[0][:5]  # 5層までを取り出し",
-              "new_net = vgg.features[:5]  # features[:n]でもいけるみたい",
+              "# 層の情報は、.children()で取得できる",
+              "new_net = nn.Sequential(*list(vgg.children())[:-1])  # 最後の層以外を取り出し",
+              "new_net = vgg.features[:5]  # vggの場合features[:n]でもいけるみたい",
+              "",
             ]
           },
         ]

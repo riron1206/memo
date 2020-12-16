@@ -4837,6 +4837,7 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
               "# fcという名前の層を全結合層に差し替える",
               "n_classes = 5",
               "net.fc = nn.Linear(2048, n_classes)",
+              "net[0] = nn.Linear(2048, n_classes)  # 層の番号でもいける",
             ]
           },
           {
@@ -4856,12 +4857,13 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
           {
             'name': 'はじめのn層だけを取り出す',
             'snippet': [
-              "# 層の情報は、.children()で取得できる",
               "import torchvision ",
+              "from torch import nn",
               "vgg = torchvision.models.vgg16(pretrained=True)",
-              "layers = list(vgg.children())",
-              "new_net = layers[0][:5]  # 5層までを取り出し",
-              "new_net = vgg.features[:5]  # features[:n]でもいけるみたい",
+              "# 層の情報は、.children()で取得できる",
+              "new_net = nn.Sequential(*list(vgg.children())[:-1])  # 最後の層以外を取り出し",
+              "new_net = vgg.features[:5]  # vggの場合features[:n]でもいけるみたい",
+              "",
             ]
           },
         ]
