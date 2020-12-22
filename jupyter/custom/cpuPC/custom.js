@@ -4866,6 +4866,16 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
               "",
             ]
           },
+          {
+            'name': '中間層の出力だす',
+            'snippet': [
+              "modulelist = list(model.net.children())",
+              "xxx = data.float()  # dataは4次元のテンソル",
+              "for l in modulelist[:-2]:  # forで回して最終層から2つ前の層の出力だす",
+              "    xxx = l(xxx)",
+              "fms = xxx",
+            ]
+          },
         ]
       },
       {

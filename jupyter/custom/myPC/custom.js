@@ -4882,7 +4882,7 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
           {
             'name': '任意の層より前の重みを固定(requires_grad=False)',
             'snippet': [
-              "import torchvision ",
+              "import torchvision",
               "",
               "vgg = torchvision.models.vgg16(pretrained=True)",
               "",
@@ -4896,13 +4896,23 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
           {
             'name': 'はじめのn層だけを取り出す',
             'snippet': [
-              "import torchvision ",
+              "import torchvision",
               "from torch import nn",
               "vgg = torchvision.models.vgg16(pretrained=True)",
               "# 層の情報は、.children()で取得できる",
               "new_net = nn.Sequential(*list(vgg.children())[:-1])  # 最後の層以外を取り出し",
               "new_net = vgg.features[:5]  # vggの場合features[:n]でもいけるみたい",
               "",
+            ]
+          },
+          {
+            'name': '中間層の出力だす',
+            'snippet': [
+              "modulelist = list(model.net.children())",
+              "xxx = data.float()  # dataは4次元のテンソル",
+              "for l in modulelist[:-2]:  # forで回して最終層から2つ前の層の出力だす",
+              "    xxx = l(xxx)",
+              "fms = xxx",
             ]
           },
         ]
