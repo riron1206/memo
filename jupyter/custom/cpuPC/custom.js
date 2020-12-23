@@ -4876,6 +4876,20 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
               "fms = xxx",
             ]
           },
+          {
+            'name': '層の名前取得',
+            'snippet': [
+              "names = [name for name, layer in model.named_modules()]",
+            ]
+          },
+          {
+            'name': 'Conv2dのみ取得',
+            'snippet': [
+              "for name, layer in model.named_modules():",
+              "    if isinstance(layer, torch.nn.Conv2d):",
+              "        print(name, layer)",
+            ]
+          },
         ]
       },
       {
