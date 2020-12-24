@@ -275,6 +275,12 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
               "!pip install \"git+https://github.com/PyTorchLightning/pytorch-lightning-bolts.git\""
             ]
           },
+          {
+            'name': 'whlファイルをpipでインストール',
+            'snippet': [
+              "!pip install \"numpy-1.14.5+mkl-cp35-cp35m-win_amd64.whl\""
+            ]
+          },
         ]
       },
       {
