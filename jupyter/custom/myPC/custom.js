@@ -4877,6 +4877,21 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
             ]
           },
           {
+            'name': 'numpyとtensor変換',
+            'snippet': [
+              "import torch",
+              "import numpy as np",
+              "",
+              "x = np.array([0.4, 0.3, 0.2, 0.1])",
+              "",
+              "# numpy → tensor",
+              "x = torch.from_numpy(x.astype(np.float32)).clone()",
+              "",
+              "# tensor → numpy",
+              "x = x.to('cpu').detach().numpy().copy()",
+            ]
+          },
+          {
             'name': '特定の層を入れ替える（fine-tuningで使う）',
             'snippet': [
               "# fcという名前の層を全結合層に差し替える",
