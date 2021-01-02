@@ -4799,6 +4799,13 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
         'name': 'pytorch',
         'sub-menu': [
           {
+            'name': 'デバイス確認',
+            'snippet': [
+              "import torch",
+              "device = \"cuda\" if torch.cuda.is_available() else \"cpu\"",
+            ]
+          },
+          {
             'name': '乱数固定',
             'snippet': [
               "import os",
