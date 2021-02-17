@@ -2803,6 +2803,14 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
         'name': 'df',
         'sub-menu': [
           {
+            'name': 'df_fold_col',
+            'snippet': [
+              "df[\"fold\"] = 0",
+              "df.loc[idx, \"fold\"] = 1",
+              "df[\"fold\"] = df[\"fold\"].astype(int)",
+            ],
+          },
+          {
             'name': 'df_object_col',
             'snippet': [
               "df.select_dtypes(include=[\"object\", \"category\", \"bool\"]).columns.to_list()",
