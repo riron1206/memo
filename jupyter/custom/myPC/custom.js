@@ -106,7 +106,8 @@ require(["nbextensions/snippets_menu/main"], function (snippets_menu) {
         'snippet': [
           "import sys",
           "sys.path.append(r'C:\\Users\\81908\\Git\\xfeat')",
-          "# sys.path.insert(0,'../input/pytorch-lightning')  # 最初に入れる場合",
+          "# sys.path.insert(0,'../input/xfeat')  # 最初に入れる場合",
+          "# sys.path.append('https://github.com/pfnet-research/xfeat.git')  # git clone 直でもいけるらしい",
           "import xfeat",
         ],
       },
